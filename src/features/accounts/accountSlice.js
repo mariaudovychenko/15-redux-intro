@@ -63,7 +63,7 @@ export function deposit(amount, currency) {
 }
 
 export function withdraw(amount) {
-  return { type: "account/withdraw", payload: converted };
+  return { type: "account/withdraw", payload: amount };
 }
 
 export function requestLoan(amount, purpose) {

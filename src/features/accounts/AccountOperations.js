@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestLoan } from "./accountSlice";
+import { deposit, payLoan, requestLoan, withdraw } from "./accountSlice";
 
 function AccountOperations() {
   const [depositAmount, setDepositAmount] = useState("");
@@ -15,15 +15,16 @@ function AccountOperations() {
     loanPurpose: currentLoanPurpose,
     balance,
     isLoading,
-  } = useSelector((store) => state.account); // useSelector allows you to extract specific parts of the Redux state (in this case, the account slice).
+  } = useSelector((store) => store.account); // useSelector allows you to extract specific parts of the Redux state (in this case, the account slice).
   //It automatically ensures that the component re-renders when the selected state (account.loan, account.loanPurpose, or account.balance) changes.
 
+  console.log(balance);
   function handleDeposit() {
     if (!depositAmount) return;
 
     dispatch(deposit(depositAmount, currency));
     setDepositAmount("");
-    setCurrency("");
+    setCurrency("USD");
   }
 
   function handleWithdrawal() {
